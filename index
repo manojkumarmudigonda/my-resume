@@ -1,0 +1,2673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manoj Kumar Mudigonda — Operations & AI Professional</title>
+  <meta name="description" content="Operations Professional specializing in Generative AI, Automation, and Process Efficiency. Currently at Amazon." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --bg-primary: #04080f;
+      --bg-secondary: #0a0f1e;
+      --bg-tertiary: #0f172a;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
+      --accent-orange: #f97316;
+      --accent-orange-light: #fb923c;
+      --accent-orange-dark: #ea6c0a;
+      --accent-blue: #3b82f6;
+      --accent-blue-light: #60a5fa;
+      --accent-glow: rgba(249, 115, 22, 0.15);
+      --accent-glow-strong: rgba(249, 115, 22, 0.3);
+      --blue-glow: rgba(59, 130, 246, 0.15);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(249, 115, 22, 0.3);
+      --gradient-hero: linear-gradient(135deg, #04080f 0%, #0a0f1e 50%, #0f172a 100%);
+      --gradient-orange: linear-gradient(135deg, #f97316, #fb923c);
+      --gradient-blue: linear-gradient(135deg, #3b82f6, #60a5fa);
+      --gradient-text: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+      --font-display: 'Inter', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-med: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-orange: 0 0 40px rgba(249, 115, 22, 0.2), 0 0 80px rgba(249, 115, 22, 0.08);
+      --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+      --shadow-card-hover: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(249, 115, 22, 0.1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.8;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    ::selection {
+      background: rgba(249, 115, 22, 0.3);
+      color: var(--text-primary);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================================
+       SCROLL PROGRESS BAR
+    ============================================================ */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--gradient-orange);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+    }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    #cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease;
+      mix-blend-mode: screen;
+    }
+
+    #cursor-dot {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      background: var(--accent-orange);
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
+      box-shadow: 0 0 12px rgba(249, 115, 22, 0.8), 0 0 24px rgba(249, 115, 22, 0.4);
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      border: 1.5px solid rgba(249, 115, 22, 0.5);
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+    }
+
+    body.cursor-hover #cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-orange-light);
+    }
+
+    body.cursor-hover #cursor-ring {
+      width: 56px;
+      height: 56px;
+      border-color: rgba(249, 115, 22, 0.8);
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all var(--transition-med);
+      background: transparent;
+    }
+
+    #navbar.scrolled {
+      background: rgba(4, 8, 15, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .nav-monogram {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--bg-primary);
+      background: var(--gradient-orange);
+      padding: 8px 14px;
+      border-radius: 40px;
+      letter-spacing: 1px;
+      box-shadow: var(--shadow-orange);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .nav-monogram:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+    }
+
+    .nav-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: color var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 14px;
+      right: 14px;
+      height: 1.5px;
+      background: var(--accent-orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-fast);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-primary);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      padding: 8px 20px;
+      border-radius: 40px;
+      margin-left: 10px;
+      transition: all var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-orange);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      border-radius: 40px;
+    }
+
+    .nav-cta:hover {
+      color: var(--bg-primary);
+      border-color: transparent;
+      box-shadow: var(--shadow-orange);
+    }
+
+    .nav-cta:hover::before {
+      opacity: 1;
+    }
+
+    .nav-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+      background: none;
+      border: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: min(320px, 85vw);
+      height: 100vh;
+      background: rgba(10, 15, 30, 0.98);
+      backdrop-filter: blur(30px);
+      border-left: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px 40px;
+      gap: 8px;
+      transition: right var(--transition-med);
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer .nav-link {
+      font-size: 18px;
+      padding: 12px 0;
+      letter-spacing: 2px;
+    }
+
+    .nav-drawer .nav-link::after {
+      left: 0;
+      right: 0;
+      bottom: 6px;
+    }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-med);
+    }
+
+    .nav-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ============================================================
+       SECTION BASE STYLES
+    ============================================================ */
+    section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-padding {
+      padding: 120px 0;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent-orange);
+    }
+
+    .section-number {
+      position: absolute;
+      top: 60px;
+      right: -20px;
+      font-family: var(--font-display);
+      font-size: clamp(100px, 16vw, 180px);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes float-orb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    @keyframes float-orb-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-40px, 20px) scale(1.08); }
+      66% { transform: translate(25px, -35px) scale(0.92); }
+    }
+
+    @keyframes float-orb-3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(20px, 30px) scale(1.1); }
+    }
+
+    @keyframes bounce-arrow {
+      0%, 100% { transform: translateY(0) translateX(-50%); }
+      50% { transform: translateY(8px) translateX(-50%); }
+    }
+
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes shine-sweep {
+      0% { left: -100%; }
+      100% { left: 200%; }
+    }
+
+    @keyframes rotate-border {
+      0% { --angle: 0deg; }
+      100% { --angle: 360deg; }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scale-in {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.1); }
+      50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.7), 0 0 80px rgba(249, 115, 22, 0.2); }
+    }
+
+    /* Reveal classes via IntersectionObserver */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+    .reveal-delay-6 { transition-delay: 0.6s; }
+
+    /* ============================================================
+       1. HERO SECTION
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-hero);
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Dot grid texture overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Floating orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
+      top: -15%;
+      right: -10%;
+      animation: float-orb 12s ease-in-out infinite;
+    }
+
+    .hero-orb-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+      bottom: -10%;
+      left: -8%;
+      animation: float-orb-2 16s ease-in-out infinite;
+    }
+
+    .hero-orb-3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.07) 0%, transparent 70%);
+      top: 40%;
+      left: 30%;
+      animation: float-orb-3 20s ease-in-out infinite;
+    }
+
+    .hero-orb-4 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      top: 20%;
+      left: 10%;
+      animation: float-orb 18s ease-in-out infinite reverse;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      padding: 8px 20px;
+      border-radius: 40px;
+      background: rgba(249, 115, 22, 0.06);
+      margin-bottom: 32px;
+      animation: fade-up 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 6px var(--accent-orange);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 9vw, 100px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -3px;
+      color: var(--text-primary);
+      margin-bottom: 0;
+      animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+    }
+
+    .hero-h1 .name-line-2 {
+      display: block;
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 40%, #fbbf24 70%, #f97316 100%);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both, gradient-shift 4s ease infinite 1s;
+    }
+
+    .hero-typewriter-wrapper {
+      height: 40px;
+      margin: 28px 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+    }
+
+    #typewriter {
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+    }
+
+    #typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em;
+      background: var(--accent-orange);
+      vertical-align: text-bottom;
+      margin-left: 3px;
+      animation: blink-cursor 0.8s step-end infinite;
+    }
+
+    .hero-tagline {
+      font-size: clamp(14px, 1.8vw, 17px);
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 44px;
+      animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fade-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bg-primary);
+      background: var(--gradient-orange);
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 24px rgba(249, 115, 22, 0.35), 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      transition: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(249, 115, 22, 0.5), 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .btn-primary:hover::before {
+      animation: shine-sweep 0.6s ease forwards;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      background: transparent;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(249, 115, 22, 0.4);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-ghost::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(249, 115, 22, 0.08);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      border-radius: 50px;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(249, 115, 22, 0.8);
+      color: var(--accent-orange-light);
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+    }
+
+    .btn-ghost:hover::before {
+      opacity: 1;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce-arrow 2s ease-in-out infinite, fade-up 1s 0.8s both;
+      z-index: 2;
+    }
+
+    .hero-scroll-text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1.5px solid var(--accent-orange);
+      border-bottom: 1.5px solid var(--accent-orange);
+      transform: rotate(45deg) translateX(-50%);
+      margin-top: -6px;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       2. ABOUT SECTION
+    ============================================================ */
+    #about {
+      background: var(--bg-primary);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-orange {
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
+
+    .highlight-blue {
+      color: var(--accent-blue-light);
+      font-weight: 600;
+    }
+
+    .highlight-gradient {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      transition: all var(--transition-med);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(249,115,22,0), rgba(249,115,22,0.3), rgba(59,130,246,0.2), rgba(249,115,22,0));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .stat-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--accent-orange);
+      line-height: 1;
+      margin-bottom: 6px;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       3. EXPERIENCE SECTION
+    ============================================================ */
+    #experience {
+      background: var(--bg-secondary);
+    }
+
+    .experience-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .company-block {
+      margin-bottom: 60px;
+    }
+
+    .company-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 28px;
+      margin-bottom: 0;
+    }
+
+    .company-emoji {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+
+    .company-info {
+      flex: 1;
+    }
+
+    .company-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .company-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .company-type-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-blue-light);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      margin-top: 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: repeating-linear-gradient(to bottom, rgba(249,115,22,0.3) 0px, rgba(249,115,22,0.3) 4px, transparent 4px, transparent 12px);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-top: -1px;
+    }
+
+    .timeline-node {
+      position: absolute;
+      left: -30px;
+      top: 30px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
+      z-index: 2;
+    }
+
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(249, 115, 22, 0.4);
+      animation: pulse-ring 2s ease-out infinite;
+    }
+
+    .experience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid transparent;
+      border-image: linear-gradient(to bottom, var(--accent-orange), rgba(249,115,22,0.2)) 1;
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      transition: all var(--transition-med);
+      backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,115,22,0.02), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      pointer-events: none;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(249, 115, 22, 0.3);
+      background: var(--bg-card-hover);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .experience-card:hover::after {
+      opacity: 1;
+    }
+
+    .exp-role-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .exp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .exp-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .exp-badge-company {
+      background: rgba(249, 115, 22, 0.1);
+      color: var(--accent-orange);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+    }
+
+    .exp-badge-date {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .exp-badge-present {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent-blue-light);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .exp-bullets li {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      box-shadow: 0 0 6px rgba(249, 115, 22, 0.5);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       4. SKILLS SECTION
+    ============================================================ */
+    #skills {
+      background: var(--bg-primary);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      transition: all var(--transition-med);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-xl);
+      background: conic-gradient(
+        from var(--angle, 0deg),
+        transparent 0deg,
+        rgba(249, 115, 22, 0.5) 60deg,
+        rgba(59, 130, 246, 0.4) 120deg,
+        transparent 180deg
+      );
+      z-index: -1;
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      animation: rotate-border 3s linear infinite;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .skill-card-inner {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      border-radius: calc(var(--radius-xl) - 1px);
+      height: 100%;
+    }
+
+    .skill-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .skill-category {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .skill-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.3px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      transition: all var(--transition-fast);
+    }
+
+    .skill-tag:hover {
+      color: var(--accent-orange);
+      border-color: rgba(249, 115, 22, 0.4);
+      background: rgba(249, 115, 22, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.1);
+    }
+
+    /* ============================================================
+       5. EDUCATION SECTION
+    ============================================================ */
+    #education {
+      background: var(--bg-secondary);
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-med);
+      position: relative;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .edu-card-strip {
+      height: 5px;
+      background: var(--gradient-orange);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .edu-card-strip::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .edu-card:hover .edu-card-strip::after {
+      transform: translateX(100%);
+    }
+
+    .edu-card-body {
+      padding: 28px 28px 32px;
+    }
+
+    .edu-degree {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .edu-institution {
+      font-size: 14px;
+      color: var(--accent-orange);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .edu-field {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .edu-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    /* ============================================================
+       6. AI FOCUS HIGHLIGHT SECTION
+    ============================================================ */
+    #ai-focus {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, #070d1c 50%, var(--bg-primary) 100%);
+      padding: 140px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #ai-focus .ai-orb {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.07) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(40px);
+      pointer-events: none;
+      animation: float-orb 15s ease-in-out infinite;
+    }
+
+    .ai-focus-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .ai-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    .ai-headline .gradient-word {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ai-subtext {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 64px;
+      line-height: 1.7;
+    }
+
+    .ai-features {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .ai-feature-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      max-width: 300px;
+      width: 100%;
+      text-align: left;
+      transition: all var(--transition-med);
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .ai-feature-tile::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(249,115,22,0.5), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+    }
+
+    .ai-feature-tile:hover {
+      transform: translateY(-8px);
+      background: var(--bg-card-hover);
+      border-color: rgba(249, 115, 22, 0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(249,115,22,0.08);
+    }
+
+    .ai-feature-tile:hover::before {
+      opacity: 1;
+    }
+
+    .ai-tile-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .ai-tile-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .ai-tile-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       7. CONTACT SECTION
+    ============================================================ */
+    #contact {
+      background: var(--bg-primary);
+    }
+
+    .contact-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .contact-subtext {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 60px;
+      line-height: 1.7;
+    }
+
+    .contact-cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 28px 32px;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all var(--transition-med);
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      border-color: rgba(249, 115, 22, 0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(249,115,22,0.08);
+    }
+
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .contact-card-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contact-card-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .contact-card-value a {
+      color: var(--accent-orange);
+      transition: color var(--transition-fast);
+    }
+
+    .contact-card-value a:hover {
+      color: var(--accent-orange-light);
+    }
+
+    .contact-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bg-primary);
+      background: var(--gradient-orange);
+      padding: 18px 48px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.4), 0 4px 20px rgba(0,0,0,0.3);
+      animation: pulse-glow 3s ease-in-out infinite;
+      transition: transform var(--transition-fast);
+    }
+
+    .contact-cta-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .contact-cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+    }
+
+    .contact-cta-btn:hover::before {
+      animation: shine-sweep 0.6s ease forwards;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--bg-primary);
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-orange);
+      background: rgba(249, 115, 22, 0.08);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #back-to-top {
+      position: fixed;
+      bottom: 36px;
+      right: 36px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-orange);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 800;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all var(--transition-med);
+      box-shadow: var(--shadow-orange);
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #back-to-top svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--bg-primary);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .section-padding {
+        padding: 80px 0;
+      }
+
+      #navbar {
+        padding: 16px 24px;
+      }
+
+      #navbar.scrolled {
+        padding: 12px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 0 24px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .education-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .ai-features {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ai-feature-tile {
+        max-width: 100%;
+      }
+
+      .contact-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .contact-card {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .company-header {
+        flex-wrap: wrap;
+      }
+
+      .section-number {
+        font-size: 80px;
+        right: -10px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      #back-to-top {
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        max-width: 280px;
+      }
+
+      .exp-meta {
+        flex-wrap: wrap;
+      }
+
+      .experience-card {
+        padding: 24px 20px;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      .container {
+        max-width: 1320px;
+      }
+    }
+
+    /* ============================================================
+       CSS @property for animated conic gradient
+    ============================================================ */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .skill-card:hover {
+      --angle: 360deg;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Scroll Progress -->
+  <div id="scroll-progress"></div>
+
+  <!-- Custom Cursor -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="Home">
+      <span class="nav-monogram">MKM</span>
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+      <li><a href="#contact" class="nav-cta"><span>Contact</span></a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <div class="nav-drawer" id="nav-drawer" role="dialog" aria-label="Mobile navigation">
+    <ul role="list" style="width:100%">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#contact" class="nav-link" style="color:var(--accent-orange)">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-orb hero-orb-4"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>Operations &amp; AI Professional</span>
+      </div>
+
+      <h1 class="hero-h1">
+        Manoj Kumar
+        <span class="name-line-2">Mudigonda</span>
+      </h1>
+
+      <div class="hero-typewriter-wrapper">
+        <span id="typewriter"></span><span id="typewriter-cursor"></span>
+      </div>
+
+      <p class="hero-tagline">"Turning complex operations into intelligent, automated systems."</p>
+
+      <div class="hero-ctas">
+        <a href="#experience" class="btn-primary">
+          View My Work
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+        <a href="#contact" class="btn-ghost">
+          Contact Me
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span class="hero-scroll-text">Scroll to explore</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about" class="section-padding" aria-label="About">
+    <span class="section-number" aria-hidden="true">01</span>
+    <div class="container">
+      <div class="about-grid">
+        <!-- Left -->
+        <div class="about-text">
+          <p class="section-label reveal">About Me</p>
+          <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom: 40px;">
+            Operational Excellence,<br/>
+            <span style="background: var(--gradient-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Powered by AI</span>
+          </h2>
+
+          <p class="reveal reveal-delay-2">
+            Operations professional with <span class="highlight-gradient">8+ years of experience</span> across logistics workflows, seller investigations, and enrollment &amp; billing operations, with a strong focus on applying <span class="highlight-orange">Generative AI</span> and automation to drive operational efficiency and process optimization.
+          </p>
+
+          <p class="reveal reveal-delay-3">
+            At <span class="highlight-orange">Amazon</span>, I currently work in accessorials and logistics billing operations, managing high-volume workflows with a focus on accuracy, efficiency, and resolution of discrepancies. I contribute to improving process performance by identifying gaps, resolving operational issues, and ensuring smooth execution of billing-related activities in a fast-paced environment.
+          </p>
+
+          <p class="reveal reveal-delay-3">
+            Prior to this, I worked on seller investigations, where I handled complex cases, performed root cause analysis, and resolved escalations impacting operational performance and workflow stability.
+          </p>
+
+          <p class="reveal reveal-delay-4">
+            Before Amazon, at <span class="highlight-blue">Cognizant</span>, I worked in enrollment and billing operations, managing high-volume transactions while ensuring data accuracy, compliance, and process consistency. I progressed from Process Executive to Senior Process Executive, taking on increased responsibility in handling escalations, stabilizing processes, and improving operational outcomes.
+          </p>
+
+          <p class="reveal reveal-delay-4">
+            Alongside my core operations work, I actively leverage <span class="highlight-gradient">Generative AI</span> to automate repetitive tasks, build internal tools, and streamline workflows — reducing manual effort, improving turnaround time, and enhancing operational efficiency across high-volume processes.
+          </p>
+
+          <p class="reveal reveal-delay-5">
+            Core strengths include process optimization, problem-solving, <span class="highlight-orange">Generative AI–driven automation</span>, and managing large-scale operational workflows with a focus on accuracy, efficiency, and continuous improvement.
+          </p>
+        </div>
+
+        <!-- Right: Stats -->
+        <div class="about-stats" aria-label="Key statistics">
+          <div class="stat-card reveal reveal-delay-2">
+            <div class="stat-number" data-target="8" data-suffix="+">0+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-3">
+            <div class="stat-number" data-target="3" data-suffix="">0</div>
+            <div class="stat-label">Companies</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-4">
+            <div class="stat-number" data-target="5" data-suffix="+">0+</div>
+            <div class="stat-label">Roles</div>
+          </div>
+          <div class="stat-card reveal reveal-delay-5">
+            <div class="stat-number" style="-webkit-text-fill-color:transparent; background:var(--gradient-text); -webkit-background-clip:text; background-clip:text; font-size:42px;">∞</div>
+            <div class="stat-label">AI Possibilities</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCE
+  ============================================================ -->
+  <section id="experience" class="section-padding" aria-label="Experience">
+    <span class="section-number" aria-hidden="true">02</span>
+    <div class="container">
+      <p class="section-label reveal">Career Journey</p>
+      <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom: 64px;">
+        Work Experience
+      </h2>
+
+      <div class="experience-inner">
+
+        <!-- Amazon -->
+        <div class="company-block reveal reveal-delay-2">
+          <div class="company-header">
+            <div class="company-emoji" aria-hidden="true">📦</div>
+            <div class="company-info">
+              <div class="company-name">Amazon</div>
+              <div class="company-meta">Full-time · 1 yr 10 mos · Hyderabad, Telangana, India · On-site</div>
+            </div>
+            <span class="company-type-badge">Current</span>
+          </div>
+
+          <div class="timeline">
+            <!-- Role 1 -->
+            <div class="timeline-item">
+              <div class="timeline-node" aria-hidden="true"></div>
+              <div class="experience-card reveal reveal-delay-3">
+                <h3 class="exp-role-title">Operations Analyst – Accessorials &amp; Logistics Billing</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge exp-badge-company">Amazon</span>
+                  <span class="exp-badge exp-badge-present">Jun 2025 – Present</span>
+                  <span class="exp-badge exp-badge-date">~11 mos</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Owned end-to-end accessorial and logistics billing operations for high-volume workflows, ensuring accuracy, compliance, and timely resolution while leveraging Generative AI to automate repetitive tasks and reduce manual effort</li>
+                  <li>Led resolution of critical billing escalations using data analysis and AI-assisted insights to accelerate root cause identification and decision-making</li>
+                  <li>Drove process improvement and automation initiatives using Generative AI, enhancing efficiency, reducing defects, and optimizing turnaround time</li>
+                  <li>Partnered with cross-functional stakeholders to improve workflow efficiency through data-driven and automation-led approaches</li>
+                  <li>Acted as a key resource for team support, knowledge sharing, and driving adoption of AI and automation solutions</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Role 2 -->
+            <div class="timeline-item">
+              <div class="timeline-node" aria-hidden="true"></div>
+              <div class="experience-card reveal reveal-delay-4">
+                <h3 class="exp-role-title">Investigation Specialist – Operations</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge exp-badge-company">Amazon</span>
+                  <span class="exp-badge exp-badge-date">Jul 2024 – Jun 2025</span>
+                  <span class="exp-badge exp-badge-date">1 yr</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Owned investigation of seller-related operational issues, ensuring resolution within SLA and policy compliance</li>
+                  <li>Led root cause analysis to identify systemic gaps affecting seller performance and operational workflows</li>
+                  <li>Managed critical escalations impacting seller experience and platform operations</li>
+                  <li>Partnered with stakeholders to resolve complex cases and improve process efficiency</li>
+                  <li>Analyzed trends and implemented corrective actions to reduce recurring defects</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Synectics -->
+        <div class="company-block reveal reveal-delay-2">
+          <div class="company-header">
+            <div class="company-emoji" aria-hidden="true">🔍</div>
+            <div class="company-info">
+              <div class="company-name">Synectics Inc.</div>
+              <div class="company-meta">Full-time · 6 mos · Hyderabad, Telangana, India · On-site</div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-node" aria-hidden="true"></div>
+              <div class="experience-card reveal reveal-delay-3">
+                <h3 class="exp-role-title">Recruitment Specialist – Coordination</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge exp-badge-company" style="background:rgba(59,130,246,0.1); color:var(--accent-blue-light); border-color:rgba(59,130,246,0.2);">Synectics Inc.</span>
+                  <span class="exp-badge exp-badge-date">Jan 2024 – Jun 2024</span>
+                  <span class="exp-badge exp-badge-date">6 mos</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Coordinated end-to-end recruitment processes, managing candidate pipelines and scheduling</li>
+                  <li>Partnered with hiring teams to ensure seamless interview logistics and candidate experience</li>
+                  <li>Maintained accurate recruitment records and ensured compliance with hiring workflows</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cognizant -->
+        <div class="company-block reveal reveal-delay-2">
+          <div class="company-header">
+            <div class="company-emoji" aria-hidden="true">🏢</div>
+            <div class="company-info">
+              <div class="company-name">Cognizant</div>
+              <div class="company-meta">Full-time · 6 yrs 6 mos · Hyderabad, Telangana, India · On-site</div>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <!-- Role 1 -->
+            <div class="timeline-item">
+              <div class="timeline-node" aria-hidden="true"></div>
+              <div class="experience-card reveal reveal-delay-3">
+                <h3 class="exp-role-title">Senior Process Executive – Enrollment &amp; Billing Operations</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge exp-badge-company" style="background:rgba(59,130,246,0.1); color:var(--accent-blue-light); border-color:rgba(59,130,246,0.2);">Cognizant</span>
+                  <span class="exp-badge exp-badge-date">Oct 2020 – Jan 2024</span>
+                  <span class="exp-badge exp-badge-date">3 yrs 4 mos</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Managed high-volume enrollment and billing operations ensuring SLA adherence, accuracy, and compliance</li>
+                  <li>Handled complex cases and escalations ensuring timely resolution and minimal business impact</li>
+                  <li>Drove process improvement initiatives to enhance efficiency and reduce defects</li>
+                  <li>Monitored performance metrics and implemented corrective actions to improve productivity</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Role 2 -->
+            <div class="timeline-item">
+              <div class="timeline-node" aria-hidden="true"></div>
+              <div class="experience-card reveal reveal-delay-4">
+                <h3 class="exp-role-title">Process Executive</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge exp-badge-company" style="background:rgba(59,130,246,0.1); color:var(--accent-blue-light); border-color:rgba(59,130,246,0.2);">Cognizant</span>
+                  <span class="exp-badge exp-badge-date">Aug 2017 – Oct 2020</span>
+                  <span class="exp-badge exp-badge-date">3 yrs 3 mos</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Processed enrollment and billing transactions per defined workflows and guidelines</li>
+                  <li>Validated data to ensure accuracy and completeness of records</li>
+                  <li>Handled routine queries and supported issue resolution within SLA timelines</li>
+                  <li>Followed SOPs to maintain process consistency and quality standards</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SKILLS
+  ============================================================ -->
+  <section id="skills" class="section-padding" aria-label="Skills">
+    <span class="section-number" aria-hidden="true">03</span>
+    <div class="container">
+      <p class="section-label reveal">Expertise</p>
+      <h2 class="section-heading reveal reveal-delay-1" style="margin-bottom: 56px;">
+        Core Skills
+      </h2>
+
+      <div class="skills-grid">
+
+        <!-- AI & Automation -->
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-card-inner">
+            <span class="skill-icon">🤖</span>
+            <h3 class="skill-category">AI &amp; Automation</h3>
+            <p class="skill-desc">Leveraging intelligent tools to transform operations</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Generative AI</span>
+              <span class="skill-tag">AI Agents</span>
+              <span class="skill-tag">Process Automation</span>
+              <span class="skill-tag">AI-driven Tooling</span>
+              <span class="skill-tag">Workflow Intelligence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operations Management -->
+        <div class="skill-card reveal reveal-delay-3">
+          <div class="skill-card-inner">
+            <span class="skill-icon">⚙️</span>
+            <h3 class="skill-category">Operations Management</h3>
+            <p class="skill-desc">End-to-end ownership of high-volume operational systems</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Logistics Billing</span>
+              <span class="skill-tag">SLA Management</span>
+              <span class="skill-tag">Escalation Handling</span>
+              <span class="skill-tag">Seller Investigations</span>
+              <span class="skill-tag">Enrollment &amp; Billing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analysis & Process -->
+        <div class="skill-card reveal reveal-delay-4">
+          <div class="skill-card-inner">
+            <span class="skill-icon">📊</span>
+            <h3 class="skill-category">Analysis &amp; Process</h3>
+            <p class="skill-desc">Data-driven insights that power better decisions</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Root Cause Analysis</span>
+              <span class="skill-tag">Workflow Optimization</span>
+              <span class="skill-tag">Data Analysis</span>
+              <span class="skill-tag">Performance Metrics</span>
+              <span class="skill-tag">Defect Reduction</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collaboration -->
+        <div class="skill-card reveal reveal-delay-5">
+          <div class="skill-card-inner">
+            <span class="skill-icon">🤝</span>
+            <h3 class="skill-category">Collaboration</h3>
+            <p class="skill-desc">Building bridges across teams to drive outcomes</p>
+            <div class="skill-tags">
+              <span class="skill-tag">Cross-functional Teams</span>
+              <span class="skill-tag">Stakeholder Management</span>
+              <span class="skill-tag">Knowledge Sharing</span>
+              <span class="skill-tag">Process Documentation</span>
+              <span class="skill-tag">Team Enablement</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EDUCATION
+  ============================================================ -->
+  <section id="education" class="section-padding" aria-label="Education">
+    <span class="section-number" aria-hidden="true">04</span>
+    <div class="container">
+      <p class="section-label reveal" style="text-align:center; display:block; margin-bottom:12px;">Academic Background</p>
+      <h2 class="section-heading reveal reveal-delay-1" style="text-align:center; margin-bottom: 56px;">Education</h2>
+
+      <div class="education-grid">
+
+        <div class="edu-card reveal reveal-delay-2">
+          <div class="edu-card-strip"></div>
+          <div class="edu-card-body">
+            <p class="edu-institution">Osmania University</p>
+            <h3 class="edu-degree">Master of Business Administration</h3>
+            <p class="edu-field">MBA – Finance, General</p>
+            <span class="edu-year">2015 – 2017</span>
+          </div>
+        </div>
+
+        <div class="edu-card reveal reveal-delay-3">
+          <div class="edu-card-strip" style="background: var(--gradient-blue);"></div>
+          <div class="edu-card-body">
+            <p class="edu-institution" style="color:var(--accent-blue-light)">Osmania University</p>
+            <h3 class="edu-degree">Bachelor of Commerce</h3>
+            <p class="edu-field">BCom – Commerce</p>
+            <span class="edu-year">2012 – 2015</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AI FOCUS HIGHLIGHT
+  ============================================================ -->
+  <section id="ai-focus" aria-label="AI Focus">
+    <div class="ai-orb" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="ai-focus-content">
+        <p class="section-label reveal" style="display:block; text-align:center; margin-bottom:24px; justify-content:center;">AI-Driven Future</p>
+        <h2 class="ai-headline reveal reveal-delay-1">
+          Driving the Future of Operations<br/>
+          with <span class="gradient-word">Generative AI</span>
+        </h2>
+        <p class="ai-subtext reveal reveal-delay-2">
+          Bridging the gap between traditional operations and intelligent automation — building systems that think, adapt, and improve continuously.
+        </p>
+
+        <div class="ai-features">
+          <div class="ai-feature-tile reveal reveal-delay-2">
+            <span class="ai-tile-icon">🤖</span>
+            <h3 class="ai-tile-title">Automating Repetitive Tasks</h3>
+            <p class="ai-tile-desc">Leveraging Generative AI to eliminate manual bottlenecks and free capacity for higher-value decision-making across operational workflows.</p>
+          </div>
+
+          <div class="ai-feature-tile reveal reveal-delay-3">
+            <span class="ai-tile-icon">📊</span>
+            <h3 class="ai-tile-title">AI-Assisted Data Analysis</h3>
+            <p class="ai-tile-desc">Applying AI to surface insights from complex datasets, accelerate root cause identification, and drive smarter corrective actions.</p>
+          </div>
+
+          <div class="ai-feature-tile reveal reveal-delay-4">
+            <span class="ai-tile-icon">⚡</span>
+            <h3 class="ai-tile-title">Building Intelligent Tools</h3>
+            <p class="ai-tile-desc">Designing and deploying AI-powered internal tools that streamline workflows, reduce defects, and optimize end-to-end operational performance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact" class="section-padding" aria-label="Contact">
+    <span class="section-number" aria-hidden="true">05</span>
+    <div class="container">
+      <div class="contact-inner">
+        <p class="section-label reveal" style="display:block; text-align:center; justify-content:center; margin-bottom:16px;">Get In Touch</p>
+        <h2 class="contact-heading reveal reveal-delay-1">Let's Build Something Great</h2>
+        <p class="contact-subtext reveal reveal-delay-2">
+          Open to opportunities in Operations, Process Improvement &amp; AI-driven Automation. Let's connect and create impact together.
+        </p>
+
+        <div class="contact-cards">
+          <div class="contact-card reveal reveal-delay-2">
+            <div class="contact-card-icon" aria-hidden="true">✉️</div>
+            <span class="contact-card-label">Email</span>
+            <span class="contact-card-value">
+              <a href="mailto:manojkumarmudigonda@gmail.com">manojkumarmudigonda@gmail.com</a>
+            </span>
+          </div>
+
+          <div class="contact-card reveal reveal-delay-3">
+            <div class="contact-card-icon" aria-hidden="true">📍</div>
+            <span class="contact-card-label">Location</span>
+            <span class="contact-card-value">Hyderabad, Telangana<br/>India</span>
+          </div>
+
+          <div class="contact-card reveal reveal-delay-4">
+            <div class="contact-card-icon" aria-hidden="true">🏢</div>
+            <span class="contact-card-label">Current Role</span>
+            <span class="contact-card-value">Operations Analyst<br/><span style="color:var(--accent-orange)">@ Amazon</span></span>
+          </div>
+        </div>
+
+        <a href="mailto:manojkumarmudigonda@gmail.com" class="contact-cta-btn reveal reveal-delay-3" aria-label="Send email to Manoj">
+          ✉️ &nbsp;Send Me an Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-logo">MKM</span>
+      <span class="footer-copy">© 2025 Manoj Kumar Mudigonda. All rights reserved.</span>
+      <span class="footer-tagline">"Turning complex operations into intelligent, automated systems."</span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ============================================================
+    // CUSTOM CURSOR
+    // ============================================================
+    (function initCursor() {
+      const glow = document.getElementById('cursor-glow');
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+
+      let mouseX = 0, mouseY = 0;
+      let ringX = 0, ringY = 0;
+      let glowX = 0, glowY = 0;
+      let rafId;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+      });
+
+      function animateCursor() {
+        // Ring follows with lag
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+
+        // Glow follows with more lag
+        glowX += (mouseX - glowX) * 0.06;
+        glowY += (mouseY - glowY) * 0.06;
+        glow.style.left = glowX + 'px';
+        glow.style.top = glowY + 'px';
+
+        rafId = requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      // Hover effect on interactive elements
+      const interactiveEls = 'a, button, .btn-primary, .btn-ghost, .stat-card, .skill-card, .experience-card, .edu-card, .contact-card, .ai-feature-tile';
+      document.querySelectorAll(interactiveEls).forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      });
+
+      // Hide cursor when leaving window
+      document.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+        glow.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', () => {
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        glow.style.opacity = '1';
+      });
+    })();
+
+    // ============================================================
+    // SCROLL PROGRESS BAR
+    // ============================================================
+    (function initScrollProgress() {
+      const bar = document.getElementById('scroll-progress');
+      window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = (scrollTop / scrollHeight) * 100;
+        bar.style.width = progress + '%';
+      }, { passive: true });
+    })();
+
+    // ============================================================
+    // NAVBAR — scroll shrink + active link
+    // ============================================================
+    (function initNavbar() {
+      const navbar = document.getElementById('navbar');
+      const navLinks = document.querySelectorAll('.nav-link[data-section]');
+      const sections = document.querySelectorAll('section[id]');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+
+        // Active link on scroll
+        let currentSection = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.dataset.section === currentSection) {
+            link.classList.add('active');
+          }
+        });
+      }, { passive: true });
+    })();
+
+    // ============================================================
+    // HAMBURGER MENU
+    // ============================================================
+    (function initHamburger() {
+      const hamburger = document.getElementById('hamburger');
+      const drawer = document.getElementById('nav-drawer');
+      const overlay = document.getElementById('nav-overlay');
+      const drawerLinks = drawer.querySelectorAll('.nav-link');
+
+      function openMenu() {
+        hamburger.classList.add('open');
+        drawer.classList.add('open');
+        overlay.classList.add('active');
+        document.body.classList.add('menu-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeMenu() {
+        hamburger.classList.remove('open');
+        drawer.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+
+      hamburger.addEventListener('click', () => {
+        if (drawer.classList.contains('open')) closeMenu();
+        else openMenu();
+      });
+
+      overlay.addEventListener('click', closeMenu);
+      drawerLinks.forEach(link => link.addEventListener('click', closeMenu));
+    })();
+
+    // ============================================================
+    // TYPEWRITER EFFECT
+    // ============================================================
+    (function initTypewriter() {
+      const roles = [
+        'Operations Analyst @ Amazon',
+        'Generative AI Practitioner',
+        'Process Automation Expert',
+        'Workflow Optimizer'
+      ];
+      const el = document.getElementById('typewriter');
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let timeout;
+
+      function type() {
+        const current = roles[roleIndex];
+        if (isDeleting) {
+          charIndex--;
+          el.textContent = current.substring(0, charIndex);
+          timeout = charIndex === 0 ? 400 : 50;
+        } else {
+          charIndex++;
+          el.textContent = current.substring(0, charIndex);
+          timeout = charIndex === current.length ? 2200 : 70;
+        }
+
+        if (!isDeleting && charIndex === current.length) {
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+        }
+        setTimeout(type, timeout);
+      }
+      setTimeout(type, 800);
+    })();
+
+    // ============================================================
+    // INTERSECTION OBSERVER — REVEAL ANIMATIONS
+    // ============================================================
+    (function initReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    })();
+
+    // ============================================================
+    // STAT COUNTER ANIMATION
+    // ============================================================
+    (function initStatCounters() {
+      const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+      let animated = false;
+
+      function animateCounters() {
+        statNumbers.forEach(el => {
+          const target = parseInt(el.dataset.target);
+          const suffix = el.dataset.suffix || '';
+          const duration = 1800;
+          const startTime = performance.now();
+
+          function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = Math.floor(eased * target);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            animateCounters();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      const aboutSection = document.getElementById('about');
+      if (aboutSection) observer.observe(aboutSection);
+    })();
+
+    // ============================================================
+    // BACK TO TOP
+    // ============================================================
+    (function initBackToTop() {
+      const btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+      }, { passive: true });
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+
+    // ============================================================
+    // CSS CUSTOM PROPERTY ANIMATION FOR CONIC GRADIENT
+    // ============================================================
+    (function initConicAnimation() {
+      const skillCards = document.querySelectorAll('.skill-card');
+      skillCards.forEach(card => {
+        let angle = 0;
+        let rafId = null;
+        let isHovered = false;
+
+        card.addEventListener('mouseenter', () => {
+          isHovered = true;
+          function animate() {
+            if (!isHovered) return;
+            angle = (angle + 1.5) % 360;
+            card.style.setProperty('--angle', angle + 'deg');
+            rafId = requestAnimationFrame(animate);
+          }
+          animate();
+        });
+
+        card.addEventListener('mouseleave', () => {
+          isHovered = false;
+          cancelAnimationFrame(rafId);
+        });
+      });
+    })();
+
+    // ============================================================
+    // SMOOTH ANCHOR SCROLL
+    // ============================================================
+    (function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+          const targetId = anchor.getAttribute('href');
+          if (targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
